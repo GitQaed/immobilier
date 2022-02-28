@@ -23,6 +23,12 @@ class Employe
     #[ORM\JoinColumn(nullable: false)]
     private $agence;
 
+
+    public function __toString()
+    {
+        return $this->getPrenom() . " " . $this->getNom();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -4,4 +4,66 @@
 
 {% block body %}
     <h1>Accueil</h1>
+    <div class="d-flex justify-content-evenly">
+    {# Liste des biens à vendre #}
+    <div class="col-5 ms-4 mt-3">
+
+        <h2 class="text-center">Liste des biens à vendre</h2>
+        <ol class="list-group list-group-numbered">
+        {% for logement in logements %}
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">{{logement.ville ~ " - " ~ logement.superficie}}m2</div>
+                        {% for agence in logement.agences %}
+                            {{agence.nom}} - 
+                        {% endfor %}
+                    </div>
+                    <span class="badge bg-primary rounded-pill">{{logement.prix}}€</span>
+                </li>
+        {% endfor %}
+        </ol>
+    </div>
+
+    {# Liste des employes #}
+    <div class="col-5 me-4 mt-3">
+        <h2 class="text-center">Liste des Employes</h2>
+
+        <ul class="list-group list-group-flush">
+        {% for employe in employes %}
+            <li class="list-group-item">{# {{employe.prenom ~ "  " ~ employe.nom ~ " - Agence: " ~ employe.agence.nom}}#} {{employe}}</li> 
+        {% endfor %}
+                
+        </ul>
+    </div>
+</div>
+
+
+{# Liste des agences #}
+
+<div class="accordion col-5 mx-auto mt-4" id="accordionExample">
+    
+    <h2 class="text-center">Liste des Agences</h2>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="true" aria-controls="collapse">
+                </button>
+            </h2>
+            <div id="collapse" class="accordion-collapse collapse" aria-labelledby="heading" data-bs-parent="#accordionExample">
+                <div class="accordion-body d-flex">
+                    <div class="col-6">
+                        <h5>Logements</h5>
+                    </div>
+                    <div class="col-6">
+                        <h5>Employes</h5>
+
+                            <br>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>    
+</div>
+
+
 {% endblock %}
