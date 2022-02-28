@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Agence index{% endblock %}
+
+{% block body %}
+    <h1>Agence index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for agence in agences %}
+            <tr>
+                <td>{{ agence.id }}</td>
+                <td>{{ agence.nom }}</td>
+                <td>
+                    <a href="{{ path('agence_show', {'id': agence.id}) }}">show</a>
+                    <a href="{{ path('agence_edit', {'id': agence.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('agence_new') }}">Create new</a>
+{% endblock %}
+
+
+{# Si on reorganise notre dossier template (ici on a cree un dossier "back" dans lequel on a placé notre dossier agence)
+On va devoir modifier certaines choses dans plusieurs fichiers 
+-Dans le controller on va changer les renders pour indiquer les templates : ! on ne change pas les redirect routes !
+-Dans les templates on devra modifier les includes pour ciblee les bons templates(new, show, edit)
+ #}

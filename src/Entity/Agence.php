@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\AgenceRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AgenceRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AgenceRepository::class)]
 class Agence
@@ -16,6 +17,7 @@ class Agence
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Regex(["pattern" => "/^[a-z]+$/i", "message" => "Seules les lettres minuscules sont autorisées"])]
     private $nom;
 
     #[ORM\OneToMany(mappedBy: 'agence', targetEntity: Employe::class)]
