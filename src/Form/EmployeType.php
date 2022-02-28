@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Agence;
 use App\Entity\Employe;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,7 +17,10 @@ class EmployeType extends AbstractType
         $builder
             ->add('prenom')
             ->add('nom')
-            ->add('agence', EntityType::class)
+            ->add('agence', EntityType::class, [
+                "class" => Agence::class,
+                "choice_label" => "nom"
+            ])
         ;
     }
 
