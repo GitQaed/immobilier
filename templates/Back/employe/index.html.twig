@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Prenom</th>
                 <th>Nom</th>
+                <th>Agence</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ employe.id }}</td>
                 <td>{{ employe.prenom }}</td>
                 <td>{{ employe.nom }}</td>
+                <td>{{ employe.agence.nom }}</td>
                 <td>
                     <a href="{{ path('employe_show', {'id': employe.id}) }}">show</a>
                     <a href="{{ path('employe_edit', {'id': employe.id}) }}">edit</a>
